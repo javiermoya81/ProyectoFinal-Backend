@@ -7,7 +7,6 @@ const apiClass = new ApiClass('/data_base/carritos.json')
 
 carritoRouter.get('/',async(req,res)=>{
     const carrito = await apiClass.getAll()
-    console.log(carrito + 'hola')
     res.json(carrito)
 })
 
