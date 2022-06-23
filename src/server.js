@@ -15,9 +15,6 @@ server.get('/', (req, res)=>{
 server.use('/productos',productosRouter);
 server.use('/carrito',carritosRouter);
 
-
-//server.use();
-
 const port = 8080;
 server.listen(port, ()=>{
     console.log(`Servidor conectado al puerto ${port}`)

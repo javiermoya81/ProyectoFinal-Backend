@@ -1,4 +1,6 @@
-import fs from 'fs';
+import mongoose from "mongoose"
+
+mongoose.connect();
 
 class ApiClass{
     constructor(file){
