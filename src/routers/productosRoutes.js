@@ -1,65 +1,64 @@
-import { Router } from "express";
-import ApiClass from "../api";
+// import { Router } from "express";
 
-const productosRouter = Router();
+// const productosRouter = Router();
 
-const apiClass = new ApiClass('/data_base/productos.json')
+// const apiClass = new ApiClass('/data_base/productos.json')
 
-const accessPermission = true;
+// const accessPermission = true;
 
-const accessUsers = (req, res, next)=>{
-    if(!accessPermission){
-        res.send('Operación no permitida')
-    }else{
-        next()
-    }
-}
+// const accessUsers = (req, res, next)=>{
+//     if(!accessPermission){
+//         res.send('Operación no permitida')
+//     }else{
+//         next()
+//     }
+// }
 
-productosRouter.get('/',async(req,res)=>{
-    const listaProductos = await apiClass.getAll()
-    res.json(listaProductos)
-})
+// productosRouter.get('/',async(req,res)=>{
+//     const listaProductos = await apiClass.getAll()
+//     res.json(listaProductos)
+// })
 
-// ruta que devuelve un producto por id
-productosRouter.get('/:id',async(req,res)=>{
-    const idProducto = parseInt(req.params.id)
-    const producto = await apiClass.getById(idProducto)
-    res.json(producto)
-})
+// // ruta que devuelve un producto por id
+// productosRouter.get('/:id',async(req,res)=>{
+//     const idProducto = parseInt(req.params.id)
+//     const producto = await apiClass.getById(idProducto)
+//     res.json(producto)
+// })
 
-//ruta agrega un nuevo producto
-productosRouter.post('/', accessUsers, async(req, res)=>{
-    const nuevoProducto = req.body
-    nuevoProducto.price = parseInt(nuevoProducto.price)
-    await apiClass.saveElemnt(nuevoProducto)
+// //ruta agrega un nuevo producto
+// productosRouter.post('/', accessUsers, async(req, res)=>{
+//     const nuevoProducto = req.body
+//     nuevoProducto.price = parseInt(nuevoProducto.price)
+//     await apiClass.saveElemnt(nuevoProducto)
 
-    res.send({
-        mensaje: ' producto nuevo agregado',
-        producto:{
-            ...nuevoProducto
-        }
-    })
-})
+//     res.send({
+//         mensaje: ' producto nuevo agregado',
+//         producto:{
+//             ...nuevoProducto
+//         }
+//     })
+// })
 
-//ruta actualiza un producto por id
-productosRouter.put('/:id', accessUsers, async(req,res)=>{
+// //ruta actualiza un producto por id
+// productosRouter.put('/:id', accessUsers, async(req,res)=>{
 
-    const idProducto = parseInt(req.params.id)
-    const producto = await apiClass.getById(idProducto)
-    const productoModificado = req.body
+//     const idProducto = parseInt(req.params.id)
+//     const producto = await apiClass.getById(idProducto)
+//     const productoModificado = req.body
 
-    if(producto.title != productoModificado.title) producto.title = productoModificado.title
-    if(producto.price != productoModificado.price) producto.price = productoModificado.price
+//     if(producto.title != productoModificado.title) producto.title = productoModificado.title
+//     if(producto.price != productoModificado.price) producto.price = productoModificado.price
 
-    await apiClass.saveModifications(idProducto, producto)
+//     await apiClass.saveModifications(idProducto, producto)
 
-    res.json(producto)
-})
+//     res.json(producto)
+// })
 
-//ruta elimina un producto por id
-productosRouter.delete('/:id', accessUsers, async(req,res)=>{
-    const idProducto = parseInt(req.params.id) 
-    await apiClass.deleteById(idProducto)
-    res.send('Producto eliminado')
-})
-export default productosRouter
+// //ruta elimina un producto por id
+// productosRouter.delete('/:id', accessUsers, async(req,res)=>{
+//     const idProducto = parseInt(req.params.id) 
+//     await apiClass.deleteById(idProducto)
+//     res.send('Producto eliminado')
+// })
+// export default productosRouter
